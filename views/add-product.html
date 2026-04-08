@@ -4,8 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="logo">Artisan<span>.</span></a>
+        <nav class="main-nav">
+          <a href="/" class="active">Home</a>
+          <a href="/shop">Shop</a>
+          <a href="/admin/add-product">Add Product</a>
+          <a href="register.html">Register</a>
+          <a href="admin-login.html">Admin</a>
+        </nav>
+        <div class="nav-icons">
+          <a href="#" title="Search"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></a>
+          <a href="#" class="cart-link" title="Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge">3</span>
+          </a>
+        </div>
+      </div>
+    </header>
     <form action="/admin/products" method="POST">
       <input type="text" name="title" /><br /><button type="submit">
         Submit

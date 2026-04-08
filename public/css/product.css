@@ -1,0 +1,168 @@
+/* ============================================
+   PRODUCT DETAIL PAGE — Stylesheet
+   Breadcrumb, product detail layout,
+   quantity selector, related products
+   ============================================ */
+
+/* ============================================
+   1. BREADCRUMB
+   ============================================ */
+.breadcrumb {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.breadcrumb a:hover {
+  color: var(--oak);
+}
+
+.breadcrumb .separator {
+  color: var(--border);
+}
+
+.breadcrumb .current {
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+/* ============================================
+   2. PRODUCT DETAIL
+   ============================================ */
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  align-items: start;
+}
+
+.product-detail-img {
+  width: 100%;
+  height: 480px;
+  background-color: var(--soft-grey);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.product-detail-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.product-detail-info .product-category {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--oak);
+  margin-bottom: 0.5rem;
+}
+
+.product-detail-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-detail-info .product-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 1.5rem;
+}
+
+.product-detail-info .product-description {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.product-detail-info .product-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background-color: var(--soft-grey);
+  border-radius: var(--radius);
+}
+
+.product-meta-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.product-meta-item span:first-child {
+  color: var(--text-muted);
+}
+
+.product-meta-item span:last-child {
+  font-weight: 600;
+}
+
+/* ============================================
+   3. QUANTITY SELECTOR
+   ============================================ */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quantity-selector label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.quantity-selector input {
+  width: 80px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 1rem;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ============================================
+   4. RESPONSIVE — Product Detail
+   ============================================ */
+
+/* ----- Tablet (768px and below) ----- */
+@media (max-width: 768px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .product-detail-img {
+    height: 320px;
+  }
+}
+
+/* ----- Mobile (480px and below) ----- */
+@media (max-width: 480px) {
+  .detail-actions {
+    flex-direction: column;
+  }
+}
