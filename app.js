@@ -17,9 +17,7 @@ app.engine(
     layoutsDir: 'views/layouts'
   }),
 );
-app.set("view engine", "hbs");
-
-// app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +28,7 @@ app.use(shopRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-  res.status(404).render("404", { docTitle: "Not Found" });
+  res.status(404).render("404", { docTitle: "404 Not Found" });
 });
 
 app.listen(3000);

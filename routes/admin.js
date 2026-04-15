@@ -11,7 +11,6 @@ router.post("/products", (req, res, next) => {
   res.render("product", {
     docTitle: "Product Page",
     products: products,
-    hasProducts: products.length > 0 ? true : false,
   });
 });
 
