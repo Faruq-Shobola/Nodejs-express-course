@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{docTitle}
+    link(rel="stylesheet", href="/css/product.css")
+    link(rel="stylesheet", href="/css/main.css")
+  body
+    header(class="site-header")
+      div(class="container")
+        a(href="/", class="logo")
+          | Artisan
+          span .
+        nav(class="main-nav")
+          a(href="/", class="active") Home
+          a(href="/shop") Shop
+          a(href="/admin/add-product") Add Product
+          a(href="register.html") Register
+          a(href="admin-login.html") Admin
+        div(class="nav-icons")
+          a(href="#", title="Search")
+            i(class="fa-solid fa-magnifying-glass")
+          a(href="#", class="cart-link", title="Cart")
+            i(class="fa-solid fa-cart-shopping")
+            span(class="cart-badge") 3
+
+    // ========== PRODUCT DETAIL ==========
+    main(class="container")
+      if products.length > 0
+        each product in products
+          div(class="product-detail")
+            // Product Image
+            div(class="product-detail-img")
+              img(src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&h=960&fit=crop", alt="Oslo Lounge Chair")
+
+            // Product Info
+            div(class="product-detail-info")
+              p(class="product-category") Living Room
+              h1 #{product.title}
+              p(class="product-price") $849.00
+
+              p(class="product-description")
+                | The Oslo Lounge Chair combines Scandinavian simplicity with exceptional comfort. Crafted from solid oak with a natural matte finish, it features premium linen upholstery and high-density foam cushioning. The wide seat and gently curved armrests make this the perfect reading or relaxation chair for any living space.
+
+              // Product Meta
+              div(class="product-meta")
+                div(class="product-meta-item")
+                  span SKU
+                  span ART-OLC-001
+                div(class="product-meta-item")
+                  span Material
+                  span Oak / Linen
+                div(class="product-meta-item")
+                  span Dimensions
+                  span 76 × 82 × 85 cm
+                div(class="product-meta-item")
+                  span Weight
+                  span 18 kg
+                div(class="product-meta-item")
+                  span Availability
+                  span(class="text-success") In Stock
+
+              // Add to Cart Form
+              form(method="POST", action="/cart/add")
+                input(type="hidden", name="product_id", value="1")
+
+                div(class="quantity-selector")
+                  label(for="quantity") Quantity
+                  input(type="number", id="quantity", name="quantity", value="1", min="1", max="20")
+
+                div(class="detail-actions")
+                  button(type="submit", class="btn btn-primary") Add to Cart
+                  a(href="shop.html", class="btn btn-outline") Continue Shopping
+      else 
+        h1 No Product
+
