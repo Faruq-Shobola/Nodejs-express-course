@@ -1,28 +1,4 @@
-<!doctype html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Shop Page
-    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
-    link(rel="stylesheet", href="/css/main.css") 
-  body
-    //- ========== HEADER ==========
-    header(class="site-header")
-      div(class="container")
-        a(href="/", class="logo") Artisan
-          span .
-        nav(class="main-nav")
-          a(href="/" class="active") Home
-          a(href="/shop") Shop
-          a(href="/admin/add-product") Add Product
-          a(href="register.html") Register
-          a(href="admin-login.html") Admin
-        
-        div(class="nav-icons")
-          a(href="#", title="Search")
-            i(class="fa-solid fa-magnifying-glass")         
-          a(href="#", class="cart-link", title="Cart")
-            i(class="fa-solid fa-cart-shopping")
-            span(class="cart-badge") 3    
-    h1 Hello from Pug Template
+extends layouts/main-layout.pug
+
+block content  
+  h1 Hello from Pug Template
