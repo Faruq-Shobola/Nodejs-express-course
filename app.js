@@ -2,12 +2,24 @@ const path = require("path");
 
 const express = require("express");
 
+const { engine } = require("express-handlebars");
+
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 
 const app = express();
 
-app.set("view engine", "pug");
+app.engine(
+  "hbs",
+  engine({
+    extname: "hbs",
+    defaultLayout: 'main-layout',
+    layoutsDir: 'views/layouts'
+  }),
+);
+app.set("view engine", "hbs");
+
+// app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use(express.urlencoded({ extended: false }));
