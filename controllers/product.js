@@ -1,7 +1,10 @@
-const products = [];
+const Product = require('./../models/product')
 
 const getProducts = (req, res, next) => {
-  products.push({title: req.body.title})
+    const product = new Product(req.body.title)
+    product.save()
+
+    const products = Product.fetchAll()
   res.render("product", {
     docTitle: "Product Page",
     products: products,
