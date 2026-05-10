@@ -16,11 +16,16 @@ const addProduct = (req, res, next) => {
 }
 
 const getAllProducts = (req, res, next) => {
-  res.render('home', {docTitle: 'Home Page'})
+  res.render('shop', {docTitle: 'Shop Page', path: '/shop'})
+}
+
+const displayHomeDetails = (req, res, next) => {
+  res.render('home', {docTitle: 'Home Page', path: '/'})
 }
 
 module.exports = {
     getProducts,
     addProduct,
-    getAllProducts
+    getAllProducts,
+    displayHomeDetails
 }

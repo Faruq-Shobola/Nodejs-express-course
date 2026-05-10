@@ -2,6 +2,165 @@
 
 <%- include('includes/navigation.ejs') %>
 
-    <h1>This is my first express app</h1>
+        <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+      <div class="container">
+        <h1>Crafted for Comfort,<br />Designed for Life</h1>
+        <p>
+          Discover handcrafted furniture that brings warmth and elegance to
+          every room. Timeless designs, sustainable materials.
+        </p>
+        <div class="hero-actions">
+          <a href="shop.html" class="btn btn-primary">Shop Collection</a>
+          <a href="#categories" class="btn btn-outline">Browse Categories</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-title">
+          <h2>Shop by Category</h2>
+          <p>Find the perfect piece for every room in your home.</p>
+        </div>
+        <div class="category-grid">
+          <a href="shop.html" class="category-card">
+            <div class="card-img">
+              <img
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=400&fit=crop"
+                alt="Living Room Furniture"
+              />
+            </div>
+            <div class="card-body">
+              <h3>Living Room</h3>
+              <p class="text-muted">Sofas, Tables & More</p>
+            </div>
+          </a>
+
+          <a href="shop.html" class="category-card">
+            <div class="card-img">
+              <img
+                src="https://images.unsplash.com/photo-1617325247661-675ab4b64ae2?w=500&h=400&fit=crop"
+                alt="Bedroom Furniture"
+              />
+            </div>
+            <div class="card-body">
+              <h3>Bedroom</h3>
+              <p class="text-muted">Beds, Dressers & Nightstands</p>
+            </div>
+          </a>
+
+          <a href="shop.html" class="category-card">
+            <div class="card-img">
+              <img
+                src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=500&h=400&fit=crop"
+                alt="Office Furniture"
+              />
+            </div>
+            <div class="card-body">
+              <h3>Office</h3>
+              <p class="text-muted">Desks, Chairs & Shelving</p>
+            </div>
+          </a>
+
+          <a href="shop.html" class="category-card">
+            <div class="card-img">
+              <img
+                src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&h=400&fit=crop"
+                alt="Dining Furniture"
+              />
+            </div>
+            <div class="card-body">
+              <h3>Dining</h3>
+              <p class="text-muted">Tables, Chairs & Buffets</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED PRODUCTS ========== -->
+    <section class="section" style="background-color: var(--soft-grey)">
+      <div class="container">
+        <div class="section-title">
+          <h2>Featured Products</h2>
+          <p>Our most popular picks, curated for you.</p>
+        </div>
+        <div class="product-grid">
+          <!-- Product Card 1 -->
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&h=440&fit=crop"
+                alt="Oslo Lounge Chair"
+              />
+            </div>
+            <div class="product-info">
+              <p class="product-category">Living Room</p>
+              <h3 class="product-title">Oslo Lounge Chair</h3>
+              <p class="product-price">$849.00</p>
+              <a href="product.html" class="btn btn-primary btn-block"
+                >View Details</a
+              >
+            </div>
+          </article>
+
+          <!-- Product Card 2 -->
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&h=440&fit=crop"
+                alt="Walnut Platform Bed"
+              />
+            </div>
+            <div class="product-info">
+              <p class="product-category">Bedroom</p>
+              <h3 class="product-title">Walnut Platform Bed</h3>
+              <p class="product-price">$1,299.00</p>
+              <a href="product.html" class="btn btn-primary btn-block"
+                >View Details</a
+              >
+            </div>
+          </article>
+
+          <!-- Product Card 3 -->
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=500&h=440&fit=crop"
+                alt="Maple Standing Desk"
+              />
+            </div>
+            <div class="product-info">
+              <p class="product-category">Office</p>
+              <h3 class="product-title">Maple Standing Desk</h3>
+              <p class="product-price">$679.00</p>
+              <a href="product.html" class="btn btn-primary btn-block"
+                >View Details</a
+              >
+            </div>
+          </article>
+
+          <!-- Product Card 4 -->
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="https://images.unsplash.com/photo-1617098900591-3f90928e8c54?w=500&h=440&fit=crop"
+                alt="Oak Dining Table"
+              />
+            </div>
+            <div class="product-info">
+              <p class="product-category">Dining</p>
+              <h3 class="product-title">Oak Dining Table</h3>
+              <p class="product-price">$1,149.00</p>
+              <a href="product.html" class="btn btn-primary btn-block"
+                >View Details</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
 <%- include('includes/end.ejs') %>

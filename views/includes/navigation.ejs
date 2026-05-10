@@ -2,8 +2,8 @@
   <div class="container">
     <a href="/" class="logo">Artisan<span>.</span></a>
     <nav class="main-nav">
-      <a href="/" class="active">Home</a>
-      <a href="/shop">Shop</a>
+      <a href="/" class="<%= path == '/' ? 'active' : '' %>">Home</a>
+      <a href="/shop" class="<%= path == '/shop' ? 'active' : '' %>">Shop</a>
       <a href="/admin/add-product">Add Product</a>
       <a href="register.html">Register</a>
       <a href="admin-login.html">Admin</a>
