@@ -5,8 +5,7 @@
 
    <!-- ========== PRODUCT DETAIL ========== -->
     <main class="container">
-        <% if(products.length > 0) { %>
-        <% for (let product of products) { %>
+      
       <div class="product-detail">
         <!-- Product Image -->
         <div class="product-detail-img">
@@ -19,7 +18,7 @@
         <!-- Product Info -->
         <div class="product-detail-info">
           <p class="product-category">Living Room</p>
-          <h1><%= product.title %></h1>
+          <h1>Oslo Lounge Chair</h1>
           <p class="product-price">$849.00</p>
 
           <p class="product-description">
@@ -77,10 +76,6 @@
           </form>
         </div>
       </div>
-      <% } %>
-      <% } else { %>
-        <h1> No Product</h1>
-        <% } %>
-    </main>
+      </main>
 
   <%- include('includes/end.ejs') %>
