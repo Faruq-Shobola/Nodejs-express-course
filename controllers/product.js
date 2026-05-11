@@ -1,11 +1,16 @@
 const Product = require("./../models/product");
 
 const getProducts = (req, res, next) => {
-  
 
-  res.render("product", {
+  const product = new Product(req.body.title);
+  product.save();
+
+  const products = Product.fetchAll();
+
+  res.render("shop", {
     docTitle: "Product Page",
-    path: "/products",
+    products: products,
+    path: "/shop",
   });
 };
 
@@ -17,9 +22,6 @@ const addProduct = (req, res, next) => {
 };
 
 const getAllProducts = (req, res, next) => {
-  
-  const product = new Product(req.body.title);
-  product.save();
 
   const products = Product.fetchAll();
 
