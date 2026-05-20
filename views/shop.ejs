@@ -72,6 +72,12 @@
                     <p class="product-category">Living Room</p>
                     <h3 class="product-title"><%= product.title %></h3>
                     <p class="product-price">$849.00</p>
+                    <a href="/products/<%= product.id %>">
+
+                      <button type="submit" class="btn btn-outline btn-block" style="margin-bottom: 4px;">
+                          view details
+                      </button>
+                    </a>
                     <form method="POST" action="/cart/add">
                     <input type="hidden" name="product_id" value="1" />
                     <button type="submit" class="btn btn-primary btn-block">

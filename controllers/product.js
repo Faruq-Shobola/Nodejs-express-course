@@ -1,6 +1,19 @@
 const Product = require("./../models/product");
 
-const getProducts = (req, res, next) => {
+const getProduct = (req, res, next) => {
+
+  const productId = req.params.productId
+
+  const product = Product.findById(productId)
+
+  res.render("product", {
+    docTitle: "Product Page",
+    path: "/shop",
+    product: product
+  });
+};
+
+const saveProduct = (req, res, next) => {
 
   const product = new Product(req.body.title);
   product.save();
@@ -12,7 +25,7 @@ const getProducts = (req, res, next) => {
     products: products,
     path: "/shop",
   });
-};
+}
 
 const addProduct = (req, res, next) => {
   res.render("add-product", {
@@ -37,8 +50,9 @@ const displayHomeDetails = (req, res, next) => {
 };
 
 module.exports = {
-  getProducts,
+  getProduct,
   addProduct,
   getAllProducts,
+  saveProduct,
   displayHomeDetails,
 };
