@@ -6,6 +6,12 @@ const getProduct = (req, res, next) => {
 
   const product = Product.findById(productId)
 
+  console.log(product)
+
+  if(product == undefined) {
+    res.render("404", { docTitle: "404 Not Found", path:'/404' })
+  }
+
   res.render("product", {
     docTitle: "Product Page",
     path: "/shop",
