@@ -14,6 +14,10 @@ class Product {
   static fetchAll() {
     return products;
   }
+
+  static findById(id) {
+    return products.find((product) => product.id.toString() === id)
+  }
 }
 
 module.exports = Product;
