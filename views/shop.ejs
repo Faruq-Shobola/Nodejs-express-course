@@ -64,14 +64,14 @@
                 <article class="product-card">
                 <div class="product-img">
                     <img
-                    src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=520&h=440&fit=crop"
-                    alt="Oslo Lounge Chair"
+                    src="<%= product.imageURL %>"
+                    alt="<%= product.title %>"
                     />
                 </div>
                 <div class="product-info">
-                    <p class="product-category">Living Room</p>
+                    <p class="product-category"><%= product.category %></p>
                     <h3 class="product-title"><%= product.title %></h3>
-                    <p class="product-price">$849.00</p>
+                    <p class="product-price">$<%= product.price %></p>
                     <a href="/products/<%= product.id %>">
 
                       <button type="submit" class="btn btn-outline btn-block" style="margin-bottom: 4px;">

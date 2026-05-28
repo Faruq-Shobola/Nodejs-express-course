@@ -21,10 +21,14 @@ const getProduct = (req, res, next) => {
 
 const saveProduct = (req, res, next) => {
 
-  const product = new Product(req.body.title);
+  const {title, category, price, image, description} = req.body
+
+  const product = new Product(title, category, price, image, description);
   product.save();
 
   const products = Product.fetchAll();
+
+  console.log('all products', products)
 
   res.render("shop", {
     docTitle: "Product Page",

@@ -17,8 +17,7 @@
     <div class="admin-card">
       <form
         method="POST"
-        action="/admin/products"
-        enctype="multipart/form-data"
+        action="/admin/add-product"
       >
         <div class="form-grid">
           <!-- Product Name -->
@@ -29,7 +28,7 @@
             <input
               type="text"
               id="name"
-              name="name"
+              name="title"
               class="form-control"
               placeholder="e.g. Oslo Lounge Chair"
               required
@@ -73,18 +72,17 @@
             />
           </div>
 
-          <!-- Stock Quantity -->
+          <!-- Image URL -->
           <div class="form-group">
-            <label for="stock">
-              Stock Quantity <span class="required">*</span>
+            <label for="image">
+              Image URL <span class="required">*</span>
             </label>
             <input
-              type="number"
-              id="stock"
-              name="stock"
+              type="text"
+              id="image"
+              name="image"
               class="form-control"
-              placeholder="25"
-              min="0"
+              placeholder="http://image.com"
               required
             />
           </div>
@@ -105,7 +103,7 @@
           </div>
 
           <!-- Image Upload -->
-          <div class="form-group full-width">
+          <!-- <div class="form-group full-width">
             <label for="image">Product Image</label>
             <div class="file-upload">
               <div class="upload-icon">
@@ -121,7 +119,7 @@
                 style="margin-top: 1rem"
               />
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Form Actions -->
@@ -129,7 +127,7 @@
           <button type="submit" class="btn btn-primary">
             Save Product
           </button>
-          <a href="admin-products.html" class="btn btn-outline">Cancel</a>
+          <a href="/admin/products" class="btn btn-outline">Cancel</a>
         </div>
       </form>
     </div>
