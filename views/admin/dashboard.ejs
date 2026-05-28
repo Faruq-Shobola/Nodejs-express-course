@@ -1,0 +1,154 @@
+<%- include('includes/head.ejs') %>
+
+<%- include('includes/sidebar.ejs') %>
+
+<!-- ========== ADMIN MAIN CONTENT ========== -->
+    <main class="admin-main">
+    <!-- Top Bar -->
+    <div class="admin-topbar">
+        <h1>Dashboard</h1>
+        <div class="admin-user">
+        <span>Welcome, <strong>Admin</strong></span>
+        <div class="admin-avatar">A</div>
+        </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <section class="stats-grid">
+        <div class="stat-card">
+        <div class="stat-info">
+            <h4>Total Sales</h4>
+            <p class="stat-value">$48,560</p>
+            <p class="stat-change positive">
+            <i class="fa-solid fa-arrow-up"></i> 12.5% from last month
+            </p>
+        </div>
+        <div class="stat-icon sales">
+            <i class="fa-solid fa-dollar-sign"></i>
+        </div>
+        </div>
+
+        <div class="stat-card">
+        <div class="stat-info">
+            <h4>Active Orders</h4>
+            <p class="stat-value">134</p>
+            <p class="stat-change positive">
+            <i class="fa-solid fa-arrow-up"></i> 8.2% from last month
+            </p>
+        </div>
+        <div class="stat-icon orders">
+            <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        </div>
+
+        <div class="stat-card">
+        <div class="stat-info">
+            <h4>Total Products</h4>
+            <p class="stat-value">86</p>
+            <p class="stat-change negative">
+            <i class="fa-solid fa-arrow-down"></i> 2 removed this month
+            </p>
+        </div>
+        <div class="stat-icon products">
+            <i class="fa-solid fa-cube"></i>
+        </div>
+        </div>
+
+        <div class="stat-card">
+        <div class="stat-info">
+            <h4>Registered Users</h4>
+            <p class="stat-value">1,240</p>
+            <p class="stat-change positive">
+            <i class="fa-solid fa-arrow-up"></i> 64 new this month
+            </p>
+        </div>
+        <div class="stat-icon users">
+            <i class="fa-solid fa-user-group"></i>
+        </div>
+        </div>
+    </section>
+
+    <!-- Recent Orders Table -->
+    <div class="admin-card">
+        <div class="admin-card-header">
+        <h3>Recent Orders</h3>
+        <a href="#" class="btn btn-outline btn-sm">View All</a>
+        </div>
+        <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>#ORD-1042</strong></td>
+                <td>Emily Carter</td>
+                <td>Oslo Lounge Chair</td>
+                <td>$849.00</td>
+                <td><span class="stock-badge in-stock">Delivered</span></td>
+                <td>Mar 10, 2026</td>
+            </tr>
+            <tr>
+                <td><strong>#ORD-1041</strong></td>
+                <td>James Wilson</td>
+                <td>Walnut Platform Bed</td>
+                <td>$1,299.00</td>
+                <td><span class="stock-badge low-stock">Shipped</span></td>
+                <td>Mar 9, 2026</td>
+            </tr>
+            <tr>
+                <td><strong>#ORD-1040</strong></td>
+                <td>Sarah Kim</td>
+                <td>Maple Standing Desk</td>
+                <td>$679.00</td>
+                <td><span class="stock-badge low-stock">Processing</span></td>
+                <td>Mar 9, 2026</td>
+            </tr>
+            <tr>
+                <td><strong>#ORD-1039</strong></td>
+                <td>Michael Chen</td>
+                <td>Oak Dining Table</td>
+                <td>$1,149.00</td>
+                <td><span class="stock-badge in-stock">Delivered</span></td>
+                <td>Mar 8, 2026</td>
+            </tr>
+            <tr>
+                <td><strong>#ORD-1038</strong></td>
+                <td>Lisa Park</td>
+                <td>Linen Sectional Sofa</td>
+                <td>$2,199.00</td>
+                <td>
+                <span class="stock-badge out-of-stock">Cancelled</span>
+                </td>
+                <td>Mar 7, 2026</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="admin-card">
+        <div class="admin-card-header">
+        <h3>Quick Actions</h3>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+        <a href="admin-add-product.html" class="btn btn-primary"
+            ><i class="fa-solid fa-plus"></i> Add New Product</a
+        >
+        <a href="admin-products.html" class="btn btn-outline"
+            >View All Products</a
+        >
+        <a href="#" class="btn btn-outline">Export Orders</a>
+        </div>
+    </div>
+    </main>
+
+<%- include('includes/end.ejs') %>

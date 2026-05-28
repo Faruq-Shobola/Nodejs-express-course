@@ -1,0 +1,35 @@
+<!-- ========== ADMIN SIDEBAR ========== -->
+<aside class="admin-sidebar">
+  <div class="logo">
+    <a href="/">Artisan<span>.</span></a></div>
+
+  <div class="admin-nav-section">
+    <p class="admin-nav-label">Main</p>
+    <nav class="admin-nav">
+      <a href="/admin/dashboard" class="<%= path == '/dashboard' ? 'active' : '' %>">
+        <i class="fa-solid fa-gauge-high nav-icon"></i> Dashboard
+      </a>
+      <a href="/admin/products" class="<%= path == '/products' ? 'active' : '' %>">
+        <i class="fa-solid fa-couch nav-icon"></i> Products
+      </a>
+      <a href="/admin/orders" class="<%= path == '/orders' ? 'active' : '' %>">
+        <i class="fa-solid fa-box nav-icon"></i> Orders
+      </a>
+    </nav>
+  </div>
+
+  <div class="admin-nav-section">
+    <p class="admin-nav-label">Management</p>
+    <nav class="admin-nav">
+      <a href="/admin/add-product" class="<%= path == '/add-product' ? 'active' : '' %>">
+        <i class="fa-solid fa-circle-plus nav-icon"></i> Add Product
+      </a>
+    </nav>
+  </div>
+
+  <div class="admin-sidebar-footer">
+    <a href="/login"
+      ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
+    >
+  </div>
+</aside>

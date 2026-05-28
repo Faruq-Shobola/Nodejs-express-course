@@ -33,13 +33,6 @@ const saveProduct = (req, res, next) => {
   });
 }
 
-const addProduct = (req, res, next) => {
-  res.render("add-product", {
-    docTitle: "Add Product Page",
-    path: "/add-product",
-  });
-};
-
 const getAllProducts = (req, res, next) => {
 
   const products = Product.fetchAll();
@@ -55,10 +48,41 @@ const displayHomeDetails = (req, res, next) => {
   res.render("home", { docTitle: "Home Page", path: "/" });
 };
 
+const getDashbord = (req, res, next) => {
+  res.render('admin/dashboard', {
+    docTitle: "Dashboard",
+    path: "/dashboard",
+  })
+}
+
+const getProducts = (req, res, next) => {
+  res.render('admin/products', {
+    docTitle: "Products Page",
+    path: "/products",
+  })
+}
+
+const addProduct = (req, res, next) => {
+  res.render("admin/add-product", {
+    docTitle: "Add Product Page",
+    path: "/add-product",
+  });
+};
+
+const getOrders = (req, res, next) => {
+  res.render('admin/orders', {
+    docTitle: "Orders Page",
+    path: "/orders",
+  })
+}
+
 module.exports = {
   getProduct,
   addProduct,
   getAllProducts,
   saveProduct,
   displayHomeDetails,
+  getDashbord,
+  getProducts,
+  getOrders
 };
