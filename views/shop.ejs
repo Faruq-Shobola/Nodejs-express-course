@@ -78,11 +78,12 @@
                           view details
                       </button>
                     </a>
-                    <form method="POST" action="/cart/add">
-                    <input type="hidden" name="product_id" value="1" />
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Add to Cart
-                    </button>
+                    <form method="POST" action="/cart">
+                      <input type="hidden" name="productId" value="<%= product.id %>" />
+                      <input type="hidden" name="quantity" value="1">
+                      <button type="submit" class="btn btn-primary btn-block">
+                          Add to Cart
+                      </button>
                     </form>
                 </div>
                 </article>
