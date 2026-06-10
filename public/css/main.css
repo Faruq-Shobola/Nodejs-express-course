@@ -580,6 +580,226 @@ p {
 }
 
 /* ============================================
+   11b. SHOPPING CART PAGE
+   ============================================ */
+.cart-page-header {
+  margin: 2.5rem 0 2rem;
+}
+
+.cart-page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 992px) {
+  .cart-layout {
+    grid-template-columns: 2.5fr 1.2fr;
+  }
+}
+
+.cart-items-container {
+  background-color: var(--white);
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: box-shadow var(--transition);
+}
+
+.cart-item:hover {
+  box-shadow: var(--shadow);
+}
+
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--soft-grey);
+}
+
+.cart-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.cart-item-title {
+  font-size: 1.1rem;
+  margin: 0.15rem 0 0.35rem;
+  color: var(--charcoal);
+}
+
+.cart-item-price {
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  background-color: var(--soft-grey);
+}
+
+.qty-change-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--charcoal);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color var(--transition);
+}
+
+.qty-change-btn:hover {
+  background-color: var(--border);
+}
+
+.qty-number {
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-item-subtotal {
+  text-align: right;
+  min-width: 100px;
+}
+
+.subtotal-label {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.subtotal-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--charcoal);
+}
+
+.cart-item-actions {
+  flex-shrink: 0;
+}
+
+.cart-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+
+.cart-delete-btn:hover {
+  color: var(--danger);
+  background-color: rgba(192, 57, 43, 0.05);
+}
+
+/* Summary Sidebar */
+.cart-summary-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.summary-card {
+  background-color: var(--soft-grey);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+
+.summary-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.summary-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 1rem 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.total-row {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--charcoal);
+  margin-top: 1rem;
+}
+
+.total-price {
+  color: var(--oak);
+}
+
+.checkout-btn {
+  font-size: 1rem;
+  padding: 0.85rem;
+}
+
+.continue-shopping-link a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--transition);
+}
+
+.continue-shopping-link a:hover {
+  color: var(--oak-dark);
+}
+
+/* ============================================
    12. RESPONSIVE — Shared (Header, Hero, Footer)
    ============================================ */
 
@@ -613,6 +833,38 @@ p {
   /* Footer */
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Cart Responsive */
+  .cart-item {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cart-item-details {
+    width: calc(100% - 110px);
+  }
+
+  .cart-item-qty {
+    order: 4;
+  }
+
+  .cart-item-subtotal {
+    order: 5;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .subtotal-label {
+    display: inline;
+  }
+
+  .cart-item-actions {
+    order: 6;
+    margin-left: auto;
   }
 }
 

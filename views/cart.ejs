@@ -1,0 +1,106 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navigation.ejs') %>
+
+<main class="container">
+  <div class="cart-page-header">
+    <h1>Shopping Cart</h1>
+    <p class="text-muted">Manage your selected items and proceed to checkout.</p>
+  </div>
+
+  <div class="cart-layout">
+    <!-- Cart Items Section -->
+    <section class="cart-items-container">
+      <div class="cart-items-list">
+        <!-- Item 1: Oslo Lounge Chair -->
+        <div class="cart-item">
+          <!-- Product Image -->
+          <div class="cart-item-img">
+            <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=600" alt="Oslo Lounge Chair" />
+          </div>
+
+          <!-- Product Info -->
+          <div class="cart-item-details">
+            <span class="cart-item-category">Living Room</span>
+            <h3 class="cart-item-title">Oslo Lounge Chair</h3>
+            <p class="cart-item-price">$340.00</p>
+          </div>
+
+          <!-- Quantity Controls -->
+          <div class="cart-item-qty">
+            <form action="/cart/decrease" method="POST">
+              <input type="hidden" name="productId" value="1" />
+              <button type="submit" class="qty-change-btn" aria-label="Decrease quantity">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+            </form>
+            
+            <span class="qty-number">1</span>
+            
+            <form action="/cart/increase" method="POST">
+              <input type="hidden" name="productId" value="1" />
+              <button type="submit" class="qty-change-btn" aria-label="Increase quantity">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Subtotal -->
+          <div class="cart-item-subtotal">
+            <span class="subtotal-label">Subtotal:</span>
+            <span class="subtotal-value">$340.00</span>
+          </div>
+
+          <!-- Delete Action -->
+          <div class="cart-item-actions">
+            <form action="/cart/delete" method="POST">
+              <input type="hidden" name="productId" value="1" />
+              <button type="submit" class="cart-delete-btn" title="Remove Item">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Summary Section -->
+    <aside class="cart-summary-sidebar">
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <hr class="summary-divider" />
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>$1380.00</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span class="text-success">Free</span>
+        </div>
+        
+        <div class="summary-row">
+          <span>Tax</span>
+          <span>Calculated at checkout</span>
+        </div>
+        
+        <hr class="summary-divider" />
+        
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span class="total-price">$1380.00</span>
+        </div>
+        
+        <button class="btn btn-primary btn-block checkout-btn mt-4">
+          Proceed to Checkout
+        </button>
+        
+        <div class="continue-shopping-link mt-3 text-center">
+          <a href="/shop" class="text-oak"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<%- include('includes/end.ejs') %>
