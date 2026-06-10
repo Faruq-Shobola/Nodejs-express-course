@@ -11,6 +11,10 @@ class Cart {
         cart.products.push({id: productId, qty: +qty})
         console.log(cart)
     }
+
+    static getCart() {
+        return cart;
+    }
 }
 
 module.exports = Cart
