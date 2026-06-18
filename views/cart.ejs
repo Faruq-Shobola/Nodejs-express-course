@@ -30,7 +30,7 @@
           <!-- Quantity Controls -->
           <div class="cart-item-qty">
             <form action="/cart/decrease" method="POST">
-              <input type="hidden" name="productId" value="1" />
+              <input type="hidden" name="productId" value="<%= p.productData.id %>" />
               <button type="submit" class="qty-change-btn" aria-label="Decrease quantity">
                 <i class="fa-solid fa-minus"></i>
               </button>

@@ -21,5 +21,6 @@ router.get("/products/:productId", productController.getProduct);
 router.get("/cart", cartController.getCart);
 router.post("/cart", cartController.postCart);
 router.post('/cart/increase', cartController.postCartIncrease)
+router.post('/cart/decrease', cartController.postCartDecrease)
 
 module.exports = router;

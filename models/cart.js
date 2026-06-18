@@ -29,6 +29,22 @@ class Cart {
         }
     }
 
+    static decreaseProduct(id) {
+        const productId = id.toString();
+        const existingProductIndex = cart.products.findIndex(
+            (product) => product.id.toString() === productId
+        )
+        if (existingProductIndex !== -1){
+            const existingProduct = cart.products[existingProductIndex]
+            if(existingProduct.qty > 1) {
+                existingProduct.qty -= 1
+            } else {
+                cart.products.splice(existingProductIndex, 1)
+            }
+            
+        }
+    }
+
     static getCart() {
         return cart;
     }
