@@ -40,9 +40,16 @@ const postCartDecrease = (req, res, next) => {
   res.redirect('/cart')
 }
 
+const postDelete = (req, res, next) => {
+  const prodId = req.body.productId
+  Cart.deleteProduct(prodId)
+  res.redirect('/cart')
+}
+
 module.exports = {
   getCart,
   postCart,
   postCartIncrease,
-  postCartDecrease
+  postCartDecrease,
+  postDelete
 };

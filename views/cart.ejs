@@ -55,7 +55,7 @@
           <!-- Delete Action -->
           <div class="cart-item-actions">
             <form action="/cart/delete" method="POST">
-              <input type="hidden" name="productId" value="1" />
+              <input type="hidden" name="productId" value="<%= p.productData.id %>" />
               <button type="submit" class="cart-delete-btn" title="Remove Item">
                 <i class="fa-solid fa-trash-can"></i>
               </button>

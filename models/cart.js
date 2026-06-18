@@ -45,6 +45,16 @@ class Cart {
         }
     }
 
+    static deleteProduct(id) {
+        const productId = id.toString();
+        const existingProductIndex = cart.products.findIndex(
+            (product) => product.id.toString() === productId
+        )
+        if (existingProductIndex !== -1) {
+             cart.products.splice(existingProductIndex, 1)
+        }
+    }
+
     static getCart() {
         return cart;
     }
