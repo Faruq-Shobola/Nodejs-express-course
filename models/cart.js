@@ -19,6 +19,16 @@ class Cart {
         }
     }
 
+    static increaseProduct(id) {
+        const productId = id.toString();
+        const existingProductIndex = cart.products.findIndex(
+            (product) => product.id.toString() === productId
+        )
+        if (existingProductIndex !== -1){
+            cart.products[existingProductIndex].qty += 1
+        }
+    }
+
     static getCart() {
         return cart;
     }

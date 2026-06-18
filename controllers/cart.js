@@ -28,7 +28,14 @@ const postCart = (req, res, next) => {
   res.redirect("/cart");
 };
 
+const postCartIncrease = (req, res, next) => {
+  const prodId = req.body.productId
+  Cart.increaseProduct(prodId)
+  res.redirect('/cart')
+}
+
 module.exports = {
   getCart,
-  postCart
+  postCart,
+  postCartIncrease
 };

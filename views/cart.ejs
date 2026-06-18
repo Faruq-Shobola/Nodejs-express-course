@@ -39,7 +39,7 @@
             <span class="qty-number"><%= p.qty %></span>
             
             <form action="/cart/increase" method="POST">
-              <input type="hidden" name="productId" value="1" />
+              <input type="hidden" name="productId" value='<%= p.productData.id %>'/>
               <button type="submit" class="qty-change-btn" aria-label="Increase quantity">
                 <i class="fa-solid fa-plus"></i>
               </button>
