@@ -1,3 +1,5 @@
+const Product = require('./product')
+
 const cart = {
     products: [],
     totalPrice: 0
@@ -17,6 +19,7 @@ class Cart {
         } else {
             cart.products.push({id: productId, qty: +qty})
         }
+        this.calculateTotalPrice()
     }
 
     static increaseProduct(id) {
@@ -27,6 +30,7 @@ class Cart {
         if (existingProductIndex !== -1){
             cart.products[existingProductIndex].qty += 1
         }
+        this.calculateTotalPrice()
     }
 
     static decreaseProduct(id) {
@@ -43,6 +47,7 @@ class Cart {
             }
             
         }
+        this.calculateTotalPrice()
     }
 
     static deleteProduct(id) {
@@ -53,10 +58,22 @@ class Cart {
         if (existingProductIndex !== -1) {
              cart.products.splice(existingProductIndex, 1)
         }
+        this.calculateTotalPrice()
     }
 
     static getCart() {
         return cart;
+    }
+
+    static calculateTotalPrice() {
+        let price = 0
+        for(let p of cart.products) {
+            const prodDetails = Product.findById(p.id)
+            if(prodDetails) {
+                price += (+prodDetails.price) * p.qty
+            }
+        }
+        cart.totalPrice = price
     }
 }
 

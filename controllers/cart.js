@@ -16,7 +16,8 @@ const getCart = (req, res, next) => {
   res.render("cart", {
     docTitle: "Your Cart",
     path: "/cart",
-    products: cartProducts
+    products: cartProducts,
+    totalPrice: cart.totalPrice
   });
 };
 
