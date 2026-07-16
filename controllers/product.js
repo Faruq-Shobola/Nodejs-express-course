@@ -39,13 +39,16 @@ const saveProduct = (req, res, next) => {
 
 const getAllProducts = (req, res, next) => {
 
-  const products = Product.fetchAll();
+  const products = Product.fetchAll()
+  .then(([items, metaData])=> {
+      res.render("shop", {
+      docTitle: "Shop Page",
+      products: items,
+      path: "/shop",
+    });
+  })
+  .catch((err)=> console.log(err));
 
-  res.render("shop", {
-    docTitle: "Shop Page",
-    products: products,
-    path: "/shop",
-  });
 };
 
 const displayHomeDetails = (req, res, next) => {
