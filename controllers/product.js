@@ -5,18 +5,21 @@ const getProduct = (req, res, next) => {
   const productId = req.params.productId
 
   const product = Product.findById(productId)
+  .then(([product])=> {
 
-  console.log(product)
 
-  if(product == undefined) {
-    res.render("404", { docTitle: "404 Not Found", path:'/404' })
-  }
+    if(product.length == 0) {
+      res.render("404", { docTitle: "404 Not Found", path:'/404' })
+    }
 
-  res.render("product", {
-    docTitle: "Product Page",
-    path: "/shop",
-    product: product
-  });
+    res.render("product", {
+      docTitle: "Product Page",
+      path: "/shop",
+      product: product[0]
+    });
+  })
+  .catch(err=> console.log(err))
+
 };
 
 const saveProduct = (req, res, next) => {

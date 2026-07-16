@@ -19,7 +19,7 @@ class Product {
   }
 
   static findById(id) {
-    return products.find((product) => product.id.toString() === id);
+    return db.execute('SELECT * FROM products WHERE products.id = ?', [id])
   }
 }
 
