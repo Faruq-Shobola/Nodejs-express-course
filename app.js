@@ -6,6 +6,8 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
 
+const sequelize = require('./utils/database')
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -30,3 +32,12 @@ app.use((req, res, next) => {
 });
 
 app.listen(3000);
+
+(async ()=> {
+  try {
+  await sequelize.authenticate();
+  console.log('Connection has been established successfully.');
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
+})()
