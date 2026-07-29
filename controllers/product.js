@@ -3,16 +3,30 @@ const Product = require("./../models/product");
 const getProduct = (req, res, next) => {
   const productId = req.params.productId;
 
-  const product = Product.findById(productId)
-    .then(([product, metaData]) => {
-      if (product.length == 0) {
+  const product = Product.findByPk(productId)
+
+    /**********
+     *
+     *    const product = Product.findAll({
+     *       where: {
+     *         id: parseInt(productId)
+     *      }
+     *    })
+     *
+     *    
+     *    findAll returns an array - to get the first item in the .then() function you need to use product[0]
+     *
+     **********/
+
+    .then((product) => {
+      if (product == null) {
         res.render("404", { docTitle: "404 Not Found", path: "/404" });
       }
 
       res.render("product", {
         docTitle: "Product Page",
         path: "/shop",
-        product: product[0], // {}
+        product: product, // {}
       });
     })
     .catch((err) => console.log(err));
@@ -21,29 +35,25 @@ const getProduct = (req, res, next) => {
 const saveProduct = (req, res, next) => {
   const { title, category, price, image, description } = req.body;
 
-  const product = new Product(title, category, price, image, description);
-
-  product
-    .save()
-    .then(([product]) => {
-      const products = Product.fetchAll()
-      .then(([products]) => {
-        res.render("shop", {
-          docTitle: "Product Page",
-          products: products,
-          path: "/shop",
-        });
-      }).catch(err=>console.log(err))
+  Product.create({
+    title: title,
+    price: price,
+    imageUrl: image,
+    category: category,
+    description: description,
+  })
+    .then((result) => {
+      res.redirect("/shop");
     })
     .catch((err) => console.log(err));
 };
 
 const getAllProducts = (req, res, next) => {
-  const products = Product.fetchAll()
-    .then(([items, metaData]) => {
+  const products = Product.findAll()
+    .then((products) => {
       res.render("shop", {
         docTitle: "Shop Page",
-        products: items,
+        products: products,
         path: "/shop",
       });
     })
