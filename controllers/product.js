@@ -72,10 +72,17 @@ const getDashbord = (req, res, next) => {
 };
 
 const getProducts = (req, res, next) => {
-  res.render("admin/products", {
-    docTitle: "Products Page",
-    path: "/products",
-  });
+  const products = Product.findAndCountAll({
+    attributes: ['id', 'title', 'category', 'price', 'imageUrl'],
+    order: [['createdAt', 'DESC']]
+  }).then((products)=>{
+    res.render("admin/products", {
+      docTitle: "Products Page",
+      path: "/products",
+      products: products.rows,
+      total: products.count
+    });
+  }).catch((err) => console.log(err))
 };
 
 const addProduct = (req, res, next) => {

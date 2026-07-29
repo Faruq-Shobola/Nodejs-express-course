@@ -21,53 +21,52 @@
               <span
                 class="text-muted"
                 style="font-weight: 400; font-size: 0.9rem"
-                >â€” 12 products</span
+                >- <%=total %> products</span
               >
             </h3>
-            <a href="admin-add-product.html" class="btn btn-primary btn-sm"
+            <a href="/admin/add-product" class="btn btn-primary btn-sm"
               ><i class="fa-solid fa-plus"></i> Add Product</a
             >
           </div>
 
-          <!-- Products Table -->
-          <div class="table-responsive">
-            <table class="data-table">
+          <% if(products.length > 0) { %>
+            <!-- Products Table -->
+            <div class="table-responsive">
+              <table class="data-table">
               <thead>
                 <tr>
                   <th>Image</th>
                   <th>Product Name</th>
                   <th>Category</th>
                   <th>Price</th>
-                  <th>Stock</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- Product Row 1 -->
+                <% for (let product of products) { %>
                 <tr>
                   <td>
                     <div class="table-img">
                       <img
-                        src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=112&h=112&fit=crop"
-                        alt="Oslo Lounge Chair"
+                        src="<%= product.imageUrl %>"
+                        alt="<%= product.title %>"
                       />
                     </div>
                   </td>
-                  <td><strong>Oslo Lounge Chair</strong></td>
-                  <td>Living Room</td>
-                  <td>$849.00</td>
-                  <td><span class="stock-badge in-stock">25 in stock</span></td>
+                  <td><strong><%= product.title %></strong></td>
+                  <td><%= product.category %></td>
+                  <td><%= product.price %></td>
                   <td>
                     <div class="table-actions">
                       <a
-                        href="admin-add-product.html"
+                        href="/admin/products/<%= product.id %>/edit"
                         class="action-btn edit"
                         title="Edit"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></a>
                       <form
                         method="POST"
-                        action="/admin/products/1/delete"
+                        action="/admin/products/<%= product.id %>/delete"
                         style="display: inline"
                       >
                         <button
@@ -81,440 +80,13 @@
                     </div>
                   </td>
                 </tr>
-
-                <!-- Product Row 2 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=112&h=112&fit=crop"
-                        alt="Walnut Platform Bed"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Walnut Platform Bed</strong></td>
-                  <td>Bedroom</td>
-                  <td>$1,299.00</td>
-                  <td><span class="stock-badge in-stock">18 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/2/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 3 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=112&h=112&fit=crop"
-                        alt="Maple Standing Desk"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Maple Standing Desk</strong></td>
-                  <td>Office</td>
-                  <td>$679.00</td>
-                  <td><span class="stock-badge in-stock">30 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/3/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 4 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1617098900591-3f90928e8c54?w=112&h=112&fit=crop"
-                        alt="Oak Dining Table"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Oak Dining Table</strong></td>
-                  <td>Dining</td>
-                  <td>$1,149.00</td>
-                  <td><span class="stock-badge low-stock">4 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/4/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 5 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=112&h=112&fit=crop"
-                        alt="Linen Sectional Sofa"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Linen Sectional Sofa</strong></td>
-                  <td>Living Room</td>
-                  <td>$2,199.00</td>
-                  <td><span class="stock-badge in-stock">12 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/5/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 6 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=112&h=112&fit=crop"
-                        alt="Nightstand â€” Ash Wood"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Nightstand â€” Ash Wood</strong></td>
-                  <td>Bedroom</td>
-                  <td>$349.00</td>
-                  <td><span class="stock-badge in-stock">42 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/6/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 7 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=112&h=112&fit=crop"
-                        alt="Ergonomic Task Chair"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Ergonomic Task Chair</strong></td>
-                  <td>Office</td>
-                  <td>$549.00</td>
-                  <td><span class="stock-badge low-stock">5 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/7/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 8 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1503602642458-232111445657?w=112&h=112&fit=crop"
-                        alt="Windsor Dining Chair"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Windsor Dining Chair</strong></td>
-                  <td>Dining</td>
-                  <td>$289.00</td>
-                  <td><span class="stock-badge in-stock">60 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/8/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 9 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=112&h=112&fit=crop"
-                        alt="Round Coffee Table"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Round Coffee Table</strong></td>
-                  <td>Living Room</td>
-                  <td>$429.00</td>
-                  <td>
-                    <span class="stock-badge out-of-stock">Out of stock</span>
-                  </td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/9/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 10 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=112&h=112&fit=crop"
-                        alt="Oak Wardrobe â€” 3 Door"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Oak Wardrobe â€” 3 Door</strong></td>
-                  <td>Bedroom</td>
-                  <td>$1,799.00</td>
-                  <td><span class="stock-badge low-stock">3 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/10/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 11 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=112&h=112&fit=crop"
-                        alt="Floating Wall Shelf"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Floating Wall Shelf</strong></td>
-                  <td>Office</td>
-                  <td>$129.00</td>
-                  <td><span class="stock-badge in-stock">75 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/11/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Product Row 12 -->
-                <tr>
-                  <td>
-                    <div class="table-img">
-                      <img
-                        src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=112&h=112&fit=crop"
-                        alt="Teak Garden Bench"
-                      />
-                    </div>
-                  </td>
-                  <td><strong>Teak Garden Bench</strong></td>
-                  <td>Outdoor</td>
-                  <td>$599.00</td>
-                  <td><span class="stock-badge in-stock">15 in stock</span></td>
-                  <td>
-                    <div class="table-actions">
-                      <a
-                        href="admin-add-product.html"
-                        class="action-btn edit"
-                        title="Edit"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                      ></a>
-                      <form
-                        method="POST"
-                        action="/admin/products/12/delete"
-                        style="display: inline"
-                      >
-                        <button
-                          type="submit"
-                          class="action-btn delete"
-                          title="Delete"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </form>
-                    </div>
-                  </td>
-                </tr>
+                <%}%>
               </tbody>
             </table>
           </div>
+          <% } else { %>
+            <h1> No Product</h1>
+            <% } %>
 
           <!-- Pagination -->
           <nav class="pagination" aria-label="Products pagination">
