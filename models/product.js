@@ -2,7 +2,6 @@ const db = require('./../utils/database')
 
 class Product {
   constructor(title, category, price, imageURL, description) {
-    this.id = nextProuctId++; // nextProductId = nextProductId + 1
     this.title = title;
     this.category = category;
     this.price = price;
@@ -11,7 +10,8 @@ class Product {
   }
 
   save() {
-    products.push(this);
+    return db.execute('INSERT INTO products (title, price, imageUrl, description, category) VALUES (?,?,?,?,?)', 
+      [this.title, this.price, this.imageURL, this.description,this.category])
   }
 
   static fetchAll() {

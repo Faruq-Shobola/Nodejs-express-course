@@ -1,57 +1,53 @@
 const Product = require("./../models/product");
 
 const getProduct = (req, res, next) => {
-
-  const productId = req.params.productId
+  const productId = req.params.productId;
 
   const product = Product.findById(productId)
-  .then(([product])=> {
+    .then(([product, metaData]) => {
+      if (product.length == 0) {
+        res.render("404", { docTitle: "404 Not Found", path: "/404" });
+      }
 
-
-    if(product.length == 0) {
-      res.render("404", { docTitle: "404 Not Found", path:'/404' })
-    }
-
-    res.render("product", {
-      docTitle: "Product Page",
-      path: "/shop",
-      product: product[0]
-    });
-  })
-  .catch(err=> console.log(err))
-
+      res.render("product", {
+        docTitle: "Product Page",
+        path: "/shop",
+        product: product[0], // {}
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 const saveProduct = (req, res, next) => {
-
-  const {title, category, price, image, description} = req.body
+  const { title, category, price, image, description } = req.body;
 
   const product = new Product(title, category, price, image, description);
-  product.save();
 
-  const products = Product.fetchAll();
-
-  console.log('all products', products)
-
-  res.render("shop", {
-    docTitle: "Product Page",
-    products: products,
-    path: "/shop",
-  });
-}
+  product
+    .save()
+    .then(([product]) => {
+      const products = Product.fetchAll()
+      .then(([products]) => {
+        res.render("shop", {
+          docTitle: "Product Page",
+          products: products,
+          path: "/shop",
+        });
+      }).catch(err=>console.log(err))
+    })
+    .catch((err) => console.log(err));
+};
 
 const getAllProducts = (req, res, next) => {
-
   const products = Product.fetchAll()
-  .then(([items, metaData])=> {
+    .then(([items, metaData]) => {
       res.render("shop", {
-      docTitle: "Shop Page",
-      products: items,
-      path: "/shop",
-    });
-  })
-  .catch((err)=> console.log(err));
-
+        docTitle: "Shop Page",
+        products: items,
+        path: "/shop",
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 const displayHomeDetails = (req, res, next) => {
@@ -59,18 +55,18 @@ const displayHomeDetails = (req, res, next) => {
 };
 
 const getDashbord = (req, res, next) => {
-  res.render('admin/dashboard', {
+  res.render("admin/dashboard", {
     docTitle: "Dashboard",
     path: "/dashboard",
-  })
-}
+  });
+};
 
 const getProducts = (req, res, next) => {
-  res.render('admin/products', {
+  res.render("admin/products", {
     docTitle: "Products Page",
     path: "/products",
-  })
-}
+  });
+};
 
 const addProduct = (req, res, next) => {
   res.render("admin/add-product", {
@@ -80,11 +76,11 @@ const addProduct = (req, res, next) => {
 };
 
 const getOrders = (req, res, next) => {
-  res.render('admin/orders', {
+  res.render("admin/orders", {
     docTitle: "Orders Page",
     path: "/orders",
-  })
-}
+  });
+};
 
 module.exports = {
   getProduct,
@@ -94,5 +90,5 @@ module.exports = {
   displayHomeDetails,
   getDashbord,
   getProducts,
-  getOrders
+  getOrders,
 };
