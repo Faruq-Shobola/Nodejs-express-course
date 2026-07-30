@@ -13,6 +13,10 @@ router.get('/orders', productController.getOrders)
 
 router.post("/add-product", productController.saveProduct)
 
+router.get("/products/:productId/edit", productController.editProduct)
+
+router.post("/products/:productId/edit", productController.postEditProduct)
+
 router.get("/add-product", productController.addProduct);
 
 module.exports = router;

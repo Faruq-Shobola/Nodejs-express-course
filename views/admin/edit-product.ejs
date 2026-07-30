@@ -1,0 +1,139 @@
+<%- include('includes/head.ejs') %>
+
+<%- include('includes/sidebar.ejs') %>
+
+<!-- ========== ADMIN MAIN CONTENT ========== -->
+  <main class="admin-main">
+    <!-- Top Bar -->
+    <div class="admin-topbar">
+      <h1>Edit Product</h1>
+      <div class="admin-user">
+        <span>Welcome, <strong>Admin</strong></span>
+        <div class="admin-avatar">A</div>
+      </div>
+    </div>
+
+    <!-- Edit Product Form -->
+    <div class="admin-card">
+      <form
+        method="POST"
+        action="/admin/products/<%= product.id %>/edit"
+      >
+        <div class="form-grid">
+          <!-- Product Name -->
+          <div class="form-group">
+            <label for="name">
+              Product Name <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="title"
+              value="<%= product.title %>"
+              class="form-control"
+              placeholder="e.g. Oslo Lounge Chair"
+              required
+            />
+          </div>
+
+          <!-- Category -->
+          <div class="form-group">
+            <label for="category">
+              Category <span class="required">*</span>
+            </label>
+            <select
+              id="category"
+              name="category"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected>Select a category</option>
+              <option value="living-room" <%= product.category == 'living-room' ? 'selected': '' %>>Living Room</option>
+              <option value="bedroom" <%= product.category == 'bedroom' ? 'selected': '' %>>Bedroom</option>
+              <option value="office" <%= product.category == 'office' ? 'selected': '' %>>Office</option>
+              <option value="dining" <%= product.category == 'dining' ? 'selected': '' %>>Dining</option>
+              <option value="outdoor" <%= product.category == 'outdoor' ? 'selected': '' %>>Outdoor</option>
+            </select>
+          </div>
+
+          <!-- Price -->
+          <div class="form-group">
+            <label for="price">
+              Price ($) <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value="<%= product.price %>"
+              class="form-control"
+              placeholder="849.00"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
+
+          <!-- Image URL -->
+          <div class="form-group">
+            <label for="image">
+              Image URL <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="image"
+              name="image"
+              value="<%= product.imageUrl %>"
+              class="form-control"
+              placeholder="http://image.com"
+              required
+            />
+          </div>
+
+          <!-- Description -->
+          <div class="form-group full-width">
+            <label for="description">
+              Description <span class="required">*</span>
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              class="form-control"
+              placeholder="Describe the product materials, dimensions, and features..."
+              rows="5"
+              required
+            ><%= product.description %></textarea>
+          </div>
+
+          <!-- Image Upload -->
+          <!-- <div class="form-group full-width">
+            <label for="image">Product Image</label>
+            <div class="file-upload">
+              <div class="upload-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <p>Drag & drop an image here, or click to browse</p>
+              <p class="upload-hint">PNG, JPG, or WEBP — Max 5 MB</p>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/png, image/jpeg, image/webp"
+                style="margin-top: 1rem"
+              />
+            </div>
+          </div> -->
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            Edit Product
+          </button>
+          <a href="/admin/products" class="btn btn-outline">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+<%- include('includes/end.ejs') %>
