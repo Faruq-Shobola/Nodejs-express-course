@@ -115,7 +115,7 @@ const editProduct = (req, res, next) => {
       res.render("admin/edit-product", {
         docTitle: "Edit Producut Page",
         path: "/products",
-        product: product
+        product: product,
       });
     })
     .catch((err) => console.log(err));
@@ -123,29 +123,46 @@ const editProduct = (req, res, next) => {
 
 const postEditProduct = (req, res, next) => {
   const productId = req.params.productId;
-   const { title, category, price, image, description } = req.body;
+  const { title, category, price, image, description } = req.body;
 
   const product = Product.findByPk(productId)
 
-  .then((product) => {
+    .then((product) => {
       if (product == null) {
         res.render("404", { docTitle: "404 Not Found", path: "/404" });
       }
 
-      product.title = title
-      product.category = category
-      product.price = price
-      product.imageUrl = image
-      product.description = description
+      product.title = title;
+      product.category = category;
+      product.price = price;
+      product.imageUrl = image;
+      product.description = description;
 
-      return product.save()
-     
+      return product.save();
+    })
+    .then((result) => {
+      console.log("Porduct Update Successfully", result);
+      res.redirect("/admin/products");
+    })
+    .catch((err) => console.log(err));
+};
+
+const postDeleteProduct = (req, res, next) => {
+  const productId = req.params.productId;
+
+  const product = Product.findByPk(productId)
+
+    .then((product) => {
+      if (product == null) {
+        res.render("404", { docTitle: "404 Not Found", path: "/404" });
+      }
+      return product.destroy()
     }).then((result)=>{
-      console.log('Porduct Update Successfully', result)
+      console.log("Porduct Deleted Successfully")
       res.redirect('/admin/products')
     })
     .catch((err) => console.log(err));
-}
+};
 
 module.exports = {
   getProduct,
@@ -157,5 +174,6 @@ module.exports = {
   getProducts,
   getOrders,
   editProduct,
-  postEditProduct
+  postEditProduct,
+  postDeleteProduct
 };

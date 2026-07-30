@@ -73,6 +73,8 @@
                           type="submit"
                           class="action-btn delete"
                           title="Delete"
+                          data-delete-trigger
+                          data-product-title="<%= product.title %>"
                         >
                           <i class="fa-solid fa-trash"></i>
                         </button>
@@ -96,6 +98,92 @@
             <a href="#">&raquo;</a>
           </nav>
         </div>
+
+        <div class="delete-modal" data-delete-modal aria-hidden="true">
+          <div class="delete-modal__backdrop" data-delete-close></div>
+          <div
+            class="delete-modal__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-modal-title"
+          >
+            <div class="delete-modal__icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="delete-modal-title">Delete product?</h3>
+            <p class="delete-modal__message" data-delete-modal-message>
+              This product will be removed from the inventory.
+            </p>
+            <div class="delete-modal__actions">
+              <button type="button" class="btn btn-secondary" data-delete-close>
+                Cancel
+              </button>
+              <button type="button" class="btn btn-danger" data-delete-confirm>
+                Delete product
+              </button>
+            </div>
+          </div>
+        </div>
       </main>
+
+      <script>
+        (() => {
+          const modal = document.querySelector('[data-delete-modal]');
+          if (!modal) {
+            return;
+          }
+
+          const message = modal.querySelector('[data-delete-modal-message]');
+          const confirmButton = modal.querySelector('[data-delete-confirm]');
+          const deleteButtons = document.querySelectorAll('[data-delete-trigger]');
+          const closeTargets = modal.querySelectorAll('[data-delete-close]');
+
+          let activeForm = null;
+
+          const openModal = (form, productTitle) => {
+            activeForm = form;
+            message.textContent = `Are you sure you want to delete “${productTitle}”? This cannot be undone.`;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            confirmButton.focus();
+          };
+
+          const closeModal = () => {
+            activeForm = null;
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+          };
+
+          deleteButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+              event.preventDefault();
+              const form = button.closest('form');
+              if (!form) {
+                return;
+              }
+
+              openModal(form, button.dataset.productTitle || 'this product');
+            });
+          });
+
+          closeTargets.forEach((target) => {
+            target.addEventListener('click', closeModal);
+          });
+
+          confirmButton.addEventListener('click', () => {
+            if (activeForm) {
+              activeForm.submit();
+            }
+          });
+
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+              closeModal();
+            }
+          });
+        })();
+      </script>
 
 <%- include('includes/end.ejs') %>

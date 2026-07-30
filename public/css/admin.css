@@ -461,6 +461,82 @@ select.form-control {
   background-color: rgba(192, 57, 43, 0.2);
 }
 
+/* Delete confirmation modal */
+.delete-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+}
+
+.delete-modal.is-open {
+  display: flex;
+}
+
+.delete-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(25, 25, 25, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.delete-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(15, 15, 15, 0.22);
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.delete-modal__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(192, 57, 43, 0.1);
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.delete-modal__dialog h3 {
+  margin-bottom: 0.55rem;
+  font-size: 1.25rem;
+}
+
+.delete-modal__message {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.35rem;
+}
+
+.delete-modal__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-secondary {
+  background-color: var(--soft-grey);
+  color: var(--charcoal);
+}
+
+.btn-secondary:hover {
+  background-color: #e6e6e6;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
 /* ============================================
    6. RESPONSIVE — Admin
    ============================================ */
@@ -520,5 +596,13 @@ select.form-control {
   .data-table tbody td {
     padding: 0.65rem 0.5rem;
     font-size: 0.85rem;
+  }
+
+  .delete-modal__dialog {
+    padding: 1.4rem;
+  }
+
+  .delete-modal__actions {
+    flex-direction: column;
   }
 }
