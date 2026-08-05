@@ -35,13 +35,25 @@ const getProduct = (req, res, next) => {
 const saveProduct = (req, res, next) => {
   const { title, category, price, image, description } = req.body;
 
-  Product.create({
+  console.log(req.user)
+
+  // Product.create({
+  //   title: title,
+  //   price: price,
+  //   imageUrl: image,
+  //   category: category,
+  //   description: description,
+  //   userId: req.user.id
+  // })
+
+  req.user.createProduct({
     title: title,
     price: price,
     imageUrl: image,
     category: category,
-    description: description,
+    description: description
   })
+  
     .then((result) => {
       res.redirect("/shop");
     })

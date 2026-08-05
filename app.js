@@ -24,19 +24,19 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  User.findByPk(2)
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
-
-app.use((req, res, next) => {
-  User.findByPk(1)
-    .then((user) => {
-      req.user = user;
-      next()
-    })
-    .catch((err) => console.log(err));
-});
 
 app.use((req, res, next) => {
   res.status(404).render("404", { docTitle: "404 Not Found", path: "/404" });
