@@ -7,6 +7,9 @@ const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
 const sequelize = require("./utils/database");
 
+const Product = require('./models/product')
+const User = require("./models/user")
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -30,7 +33,11 @@ app.use((req, res, next) => {
   res.status(404).render("404", { docTitle: "404 Not Found", path: "/404" });
 });
 
+Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'})
+User.hasMany(Product)
+
 sequelize
+  // .sync({ force : true })
   .sync()
   .then((result) => {
     console.log("Connected");
