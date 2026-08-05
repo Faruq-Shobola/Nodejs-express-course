@@ -7,8 +7,8 @@ const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
 const sequelize = require("./utils/database");
 
-const Product = require('./models/product')
-const User = require("./models/user")
+const Product = require("./models/product");
+const User = require("./models/user");
 
 const app = express();
 
@@ -30,16 +30,34 @@ app.use(shopRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
+  User.findByPk(1)
+    .then((user) => {
+      req.user = user;
+      next()
+    })
+    .catch((err) => console.log(err));
+});
+
+app.use((req, res, next) => {
   res.status(404).render("404", { docTitle: "404 Not Found", path: "/404" });
 });
 
-Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'})
-User.hasMany(Product)
+Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+User.hasMany(Product);
 
 sequelize
   // .sync({ force : true })
   .sync()
   .then((result) => {
+    return User.findByPk(1);
+  })
+  .then((user) => {
+    if (!user) {
+      return User.create({ name: "Faruq", email: "shobolafaruq@gmail.com" });
+    }
+    return user;
+  })
+  .then(() => {
     console.log("Connected");
     app.listen(3000);
   })
