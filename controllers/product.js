@@ -87,6 +87,7 @@ const getProducts = (req, res, next) => {
   const products = Product.findAndCountAll({
     attributes: ["id", "title", "category", "price", "imageUrl"],
     order: [["createdAt", "DESC"]],
+    where: {userId: req.user.id}
   })
     .then((products) => {
       res.render("admin/products", {

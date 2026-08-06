@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  User.findByPk(2)
+  User.findByPk(1)
     .then((user) => {
       req.user = user;
       next();
