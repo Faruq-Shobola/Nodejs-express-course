@@ -2,13 +2,13 @@ const path = require("path");
 
 const express = require("express");
 
-const adminRoutes = require("./routes/admin");
+// const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
-const sequelize = require("./utils/database");
+const mongoConnect = require("./utils/database");
 
-const Product = require("./models/product");
-const User = require("./models/user");
+// const Product = require("./models/product");
+// const User = require("./models/user");
 
 const app = express();
 
@@ -25,15 +25,10 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  User.findByPk(1)
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
+  next();
 });
 
-app.use("/admin", adminRoutes);
+// app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -42,25 +37,6 @@ app.use((req, res, next) => {
   res.status(404).render("404", { docTitle: "404 Not Found", path: "/404" });
 });
 
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
-User.hasMany(Product);
-
-sequelize
-  // .sync({ force : true })
-  .sync()
-  .then((result) => {
-    return User.findByPk(1);
-  })
-  .then((user) => {
-    if (!user) {
-      return User.create({ name: "Daniel", email: "danielwhite@gmail.com" });
-    }
-    return user;
-  })
-  .then(() => {
-    console.log("Connected");
-    app.listen(3000);
-  })
-  .catch((err) => {
-    console.log("Error occured");
-  });
+mongoConnect(() => {
+  app.listen(3000);
+});
