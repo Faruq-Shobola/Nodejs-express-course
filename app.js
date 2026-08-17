@@ -2,10 +2,10 @@ const path = require("path");
 
 const express = require("express");
 
-// const adminRoutes = require("./routes/admin");
+const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
-const mongoConnect = require("./utils/database");
+const { mongoConnect } = require("./utils/database");
 
 // const Product = require("./models/product");
 // const User = require("./models/user");
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/admin", adminRoutes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));

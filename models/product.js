@@ -1,11 +1,28 @@
+const { getDB } = require("./../utils/database");
+
 class Product {
-  constructor(title, price, imageURI, category, description) {
-    this.title = title,
-    this.price = price,
-    this.imageURI = imageURI, 
-    this.category = category,
-    this.description = description
+  constructor(title, price, imageUrl, category, description) {
+    ((this.title = title),
+      (this.price = price),
+      (this.imageUrl = imageUrl),
+      (this.category = category),
+      (this.description = description));
+  }
+
+  save() {
+    let db = getDB();
+    return db
+      .collection("products")
+      .insertOne({
+        title: this.title,
+        price: this.price,
+        imageUrl: this.imageUrl,
+        catagory: this.category,
+        description: this.description,
+      })
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   }
 }
 
-module.exports = Product
+module.exports = Product;
