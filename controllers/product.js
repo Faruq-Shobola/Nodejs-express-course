@@ -44,7 +44,7 @@ const saveProduct = (req, res, next) => {
 };
 
 const getAllProducts = (req, res, next) => {
-  const products = Product.findAll()
+  const products = Product.fetchAll()
     .then((products) => {
       res.render("shop", {
         docTitle: "Shop Page",
