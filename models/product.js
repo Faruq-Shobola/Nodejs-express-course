@@ -16,7 +16,9 @@ class Product {
     let dbOperation;
 
     if (this._id) {
-      dbOperation = db.collection("products").updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: this})
+      dbOperation = db
+        .collection("products")
+        .updateOne({ _id: new mongodb.ObjectId(this._id) }, { $set: this });
     } else {
       dbOperation = db.collection("products").insertOne({
         title: this.title,
@@ -53,6 +55,17 @@ class Product {
       .then((result) => {
         console.log(result);
         return result;
+      })
+      .catch((err) => console.log(err));
+  }
+
+  static deleteById(prodId) {
+    let db = getDB();
+    return db
+      .collection("products")
+      .deleteOne({ _id: new mongodb.ObjectId(prodId) })
+      .then((result) => {
+        console.log("Deleted");
       })
       .catch((err) => console.log(err));
   }

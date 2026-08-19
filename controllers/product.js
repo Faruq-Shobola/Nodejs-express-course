@@ -22,8 +22,9 @@ const getProduct = (req, res, next) => {
 const saveProduct = (req, res, next) => {
   const { title, category, price, image, description } = req.body;
 
-    const newProduct = new Product(title, price, image, category, description)
-    newProduct.save()
+  const newProduct = new Product(title, price, image, category, description);
+  newProduct
+    .save()
     .then((result) => {
       res.redirect("/shop");
     })
@@ -118,9 +119,14 @@ const postEditProduct = (req, res, next) => {
       const updatedDescription = description;
 
       const updateProductDetails = new Product(
-        updatedTitle, updatedPrice, updatedImageUrl, updatedCategory, updatedDescription, productId
-      )
-      return updateProductDetails.save()
+        updatedTitle,
+        updatedPrice,
+        updatedImageUrl,
+        updatedCategory,
+        updatedDescription,
+        productId,
+      );
+      return updateProductDetails.save();
     })
     .then((result) => {
       console.log("Porduct Update Successfully", result);
@@ -132,16 +138,11 @@ const postEditProduct = (req, res, next) => {
 const postDeleteProduct = (req, res, next) => {
   const productId = req.params.productId;
 
-  const product = Product.findByPk(productId)
+  const product = Product.deleteById(productId)
 
-    .then((product) => {
-      if (product == null) {
-        res.render("404", { docTitle: "404 Not Found", path: "/404" });
-      }
-      return product.destroy()
-    }).then((result)=>{
-      console.log("Porduct Deleted Successfully")
-      res.redirect('/admin/products')
+    .then((result) => {
+      console.log("Porduct Deleted Successfully");
+      res.redirect("/admin/products");
     })
     .catch((err) => console.log(err));
 };
@@ -157,5 +158,5 @@ module.exports = {
   getOrders,
   editProduct,
   postEditProduct,
-  postDeleteProduct
+  postDeleteProduct,
 };
