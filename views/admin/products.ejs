@@ -59,14 +59,14 @@
                   <td>
                     <div class="table-actions">
                       <a
-                        href="/admin/products/<%= product.id %>/edit"
+                        href="/admin/products/<%= product._id %>/edit"
                         class="action-btn edit"
                         title="Edit"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></a>
                       <form
                         method="POST"
-                        action="/admin/products/<%= product.id %>/delete"
+                        action="/admin/products/<%= product._id %>/delete"
                         style="display: inline"
                       >
                         <button

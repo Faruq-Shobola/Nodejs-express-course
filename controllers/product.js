@@ -54,17 +54,13 @@ const getDashbord = (req, res, next) => {
 };
 
 const getProducts = (req, res, next) => {
-  const products = Product.findAndCountAll({
-    attributes: ["id", "title", "category", "price", "imageUrl"],
-    order: [["createdAt", "DESC"]],
-    where: {userId: req.user.id}
-  })
+  const products = Product.fetchAll()
     .then((products) => {
       res.render("admin/products", {
         docTitle: "Products Page",
         path: "/products",
-        products: products.rows,
-        total: products.count,
+        products: products,
+        total: 3,
       });
     })
     .catch((err) => console.log(err));
@@ -88,7 +84,7 @@ const getOrders = (req, res, next) => {
 
 const editProduct = (req, res, next) => {
   const productId = req.params.productId;
-  const product = Product.findByPk(productId)
+  const product = Product.findById(productId)
 
     .then((product) => {
       if (product == null) {
@@ -108,20 +104,23 @@ const postEditProduct = (req, res, next) => {
   const productId = req.params.productId;
   const { title, category, price, image, description } = req.body;
 
-  const product = Product.findByPk(productId)
+  const product = Product.findById(productId)
 
     .then((product) => {
       if (product == null) {
         res.render("404", { docTitle: "404 Not Found", path: "/404" });
       }
 
-      product.title = title;
-      product.category = category;
-      product.price = price;
-      product.imageUrl = image;
-      product.description = description;
+      const updatedTitle = title;
+      const updatedCategory = category;
+      const updatedPrice = price;
+      const updatedImageUrl = image;
+      const updatedDescription = description;
 
-      return product.save();
+      const updateProductDetails = new Product(
+        updatedTitle, updatedPrice, updatedImageUrl, updatedCategory, updatedDescription, productId
+      )
+      return updateProductDetails.save()
     })
     .then((result) => {
       console.log("Porduct Update Successfully", result);

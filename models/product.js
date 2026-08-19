@@ -1,26 +1,32 @@
-const mongodb = require('mongodb')
+const mongodb = require("mongodb");
 const { getDB } = require("./../utils/database");
 
 class Product {
-  constructor(title, price, imageUrl, category, description) {
+  constructor(title, price, imageUrl, category, description, id) {
     ((this.title = title),
       (this.price = price),
       (this.imageUrl = imageUrl),
       (this.category = category),
-      (this.description = description));
+      (this.description = description),
+      (this._id = new mongodb.ObjectId(id)));
   }
 
   save() {
     let db = getDB();
-    return db
-      .collection("products")
-      .insertOne({
+    let dbOperation;
+
+    if (this._id) {
+      dbOperation = db.collection("products").updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: this})
+    } else {
+      dbOperation = db.collection("products").insertOne({
         title: this.title,
         price: this.price,
         imageUrl: this.imageUrl,
-        catagory: this.category,
+        category: this.category,
         description: this.description,
-      })
+      });
+    }
+    return dbOperation
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   }
