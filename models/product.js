@@ -8,7 +8,7 @@ class Product {
       (this.imageUrl = imageUrl),
       (this.category = category),
       (this.description = description),
-      (this._id = new mongodb.ObjectId(id)));
+      (this._id = id ? new mongodb.ObjectId(id) : null));
   }
 
   save() {
@@ -20,13 +20,7 @@ class Product {
         .collection("products")
         .updateOne({ _id: new mongodb.ObjectId(this._id) }, { $set: this });
     } else {
-      dbOperation = db.collection("products").insertOne({
-        title: this.title,
-        price: this.price,
-        imageUrl: this.imageUrl,
-        category: this.category,
-        description: this.description,
-      });
+      dbOperation = db.collection("products").insertOne(this);
     }
     return dbOperation
       .then((result) => console.log(result))
