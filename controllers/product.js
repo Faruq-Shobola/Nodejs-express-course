@@ -3,20 +3,7 @@ const Product = require("./../models/product");
 const getProduct = (req, res, next) => {
   const productId = req.params.productId;
 
-  const product = Product.findByPk(productId)
-
-    /**********
-     *
-     *    const product = Product.findAll({
-     *       where: {
-     *         id: parseInt(productId)
-     *      }
-     *    })
-     *
-     *
-     *    findAll returns an array - to get the first item in the .then() function you need to use product[0]
-     *
-     **********/
+  const product = Product.findById(productId)
 
     .then((product) => {
       if (product == null) {

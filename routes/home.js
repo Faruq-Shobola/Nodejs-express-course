@@ -14,7 +14,7 @@ router.get("/shop", productController.getAllProducts);
 //     res.render('home', { docTitle: "Home Page", path: "/" })
 // })
 
-// router.get("/products/:productId", productController.getProduct);
+router.get("/products/:productId", productController.getProduct);
 
 
 // cart route
