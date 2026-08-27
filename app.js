@@ -1,11 +1,12 @@
 const path = require("path");
+const mongoose = require("mongoose");
 
 const express = require("express");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 const Cart = require("./models/cart");
-const { mongoConnect } = require("./utils/database");
+// const { mongoConnect } = require("./utils/database");
 
 // const Product = require("./models/product");
 // const User = require("./models/user");
@@ -37,6 +38,7 @@ app.use((req, res, next) => {
   res.status(404).render("404", { docTitle: "404 Not Found", path: "/404" });
 });
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongoose
+  .connect("mongodb://localhost:27017/")
+  .then(app.listen(3000))
+  .catch((err) => console.log(err));
