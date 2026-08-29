@@ -9,7 +9,7 @@ const Cart = require("./models/cart");
 // const { mongoConnect } = require("./utils/database");
 
 // const Product = require("./models/product");
-// const User = require("./models/user");
+const User = require("./models/user");
 
 const app = express();
 
@@ -40,5 +40,18 @@ app.use((req, res, next) => {
 
 mongoose
   .connect("mongodb://localhost:27017/artisan")
-  .then(app.listen(3000))
+  .then(() => {
+    
+    User.findOne().then((user) => {
+      if (!user) {
+        const newUser = new User({
+          name: "Faruq",
+          email: "test@gmail.com",
+        });
+        newUser.save()
+      }
+    });
+
+    app.listen(3000);
+  })
   .catch((err) => console.log(err));
