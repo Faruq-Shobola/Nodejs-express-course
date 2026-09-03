@@ -26,7 +26,12 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  next();
+  User.findOne()
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
 });
 
 app.use("/admin", adminRoutes);
@@ -41,14 +46,13 @@ app.use((req, res, next) => {
 mongoose
   .connect("mongodb://localhost:27017/artisan")
   .then(() => {
-    
     User.findOne().then((user) => {
       if (!user) {
         const newUser = new User({
           name: "Faruq",
           email: "test@gmail.com",
         });
-        newUser.save()
+        newUser.save();
       }
     });
 

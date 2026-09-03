@@ -31,6 +31,7 @@ const saveProduct = (req, res, next) => {
     imageUrl: image,
     category: category,
     description: description,
+    userId: req.user
   });
   newProduct
     .save()
