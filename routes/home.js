@@ -2,7 +2,7 @@ const path = require('path')
 
 const express = require("express");
 const productController = require('./../controllers/product')
-// const cartController = require('./../controllers/cart')
+const cartController = require('./../controllers/cart')
 
 const router = express.Router();
 
@@ -18,8 +18,8 @@ router.get("/products/:productId", productController.getProduct);
 
 
 // cart route
-// router.get("/cart", cartController.getCart);
-// router.post("/cart", cartController.postCart);
+router.get("/cart", cartController.getCart);
+router.post("/cart", cartController.postCart);
 // router.post('/cart/increase', cartController.postCartIncrease)
 // router.post('/cart/decrease', cartController.postCartDecrease)
 // router.post('/cart/delete', cartController.postDelete)
