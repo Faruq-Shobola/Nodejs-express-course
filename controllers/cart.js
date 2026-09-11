@@ -28,19 +28,20 @@ const postCart = (req, res, next) => {
 
 const postCartIncrease = (req, res, next) => {
   const prodId = req.body.productId;
-  Cart.increaseProduct(prodId);
+    req.user.adjustCart(prodId, 'increase');
   res.redirect("/cart");
 };
 
 const postCartDecrease = (req, res, next) => {
   const prodId = req.body.productId;
-  Cart.decreaseProduct(prodId);
+  console.log(prodId)
+  req.user.adjustCart(prodId, 'decrease');
   res.redirect("/cart");
 };
 
 const postDelete = (req, res, next) => {
   const prodId = req.body.productId;
-  Cart.deleteProduct(prodId);
+  req.user.removeFromCart(prodId)
   res.redirect("/cart");
 };
 

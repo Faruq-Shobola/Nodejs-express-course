@@ -30,7 +30,7 @@
           <!-- Quantity Controls -->
           <div class="cart-item-qty">
             <form action="/cart/decrease" method="POST">
-              <input type="hidden" name="productId" value="<%= p.productId.id %>" />
+              <input type="hidden" name="productId" value="<%= p.productId._id %>" />
               <button type="submit" class="qty-change-btn" aria-label="Decrease quantity">
                 <i class="fa-solid fa-minus"></i>
               </button>
@@ -39,7 +39,7 @@
             <span class="qty-number"><%= p.quantity %></span>
             
             <form action="/cart/increase" method="POST">
-              <input type="hidden" name="productId" value='<%= p.productId.id %>'/>
+              <input type="hidden" name="productId" value='<%= p.productId._id %>'/>
               <button type="submit" class="qty-change-btn" aria-label="Increase quantity">
                 <i class="fa-solid fa-plus"></i>
               </button>
@@ -49,13 +49,13 @@
           <!-- Subtotal -->
           <div class="cart-item-subtotal">
             <span class="subtotal-label">Subtotal:</span>
-            <span class="subtotal-value">$<%= p.qty * p.productId.price %></span>
+            <span class="subtotal-value">$<%= p.quantity * p.productId.price %></span>
           </div>
 
           <!-- Delete Action -->
           <div class="cart-item-actions">
             <form action="/cart/delete" method="POST">
-              <input type="hidden" name="productId" value="<%= p.productId.id %>" />
+              <input type="hidden" name="productId" value="<%= p.productId._id %>" />
               <button type="submit" class="cart-delete-btn" title="Remove Item">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
