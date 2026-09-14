@@ -25,12 +25,12 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.methods.addToCart = function (product) {
+userSchema.methods.addToCart = function (product, quantity) {
   const cartProductIndex = this.cart.items.findIndex((productIndex) => {
     return productIndex.productId.toString() === product._id.toString();
   });
 
-  let newQuantity = 1;
+  let newQuantity = quantity;
   const updatedCartItems = [...this.cart.items];
 
   if (cartProductIndex >= 0) {
@@ -80,6 +80,16 @@ userSchema.methods.adjustCart = function (productId, action) {
   }
 
   return this.save();
+};
+
+userSchema.methods.calculateTotalPrice = function () {
+  let totalPrice = 0;
+  for (let item of this.cart.items) {
+    if (item.productId && item.productId.price) {
+      totalPrice += item.quantity * item.productId.price;
+    }
+  }
+  return totalPrice;
 };
 
 module.exports = mongoose.model("User", userSchema);

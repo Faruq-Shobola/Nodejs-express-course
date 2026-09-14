@@ -19,13 +19,6 @@ app.set("views", "views");
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-  const cart = Cart.getCart();
-  const cartCount = cart.products.reduce((count, p) => count + p.qty, 0);
-  res.locals.cartCount = cartCount;
-  next();
-});
-
-app.use((req, res, next) => {
   User.findOne()
     .then((user) => {
       req.user = user;
@@ -33,6 +26,14 @@ app.use((req, res, next) => {
     })
     .catch((err) => console.log(err));
 });
+
+app.use((req, res, next) => {
+  const cart = req.user.cart;
+  const cartCount = cart.items.reduce((count, p) => count + p.quantity, 0);
+  res.locals.cartCount = cartCount;
+  next();
+});
+
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);

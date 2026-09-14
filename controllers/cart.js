@@ -3,46 +3,48 @@ const Product = require("./../models/product");
 
 const getCart = (req, res, next) => {
   req.user.populate("cart.items.productId").then((user) => {
+    const totalPrice = user.calculateTotalPrice();
     res.render("cart", {
       docTitle: "Your Cart",
       path: "/cart",
       products: user.cart.items,
-      // totalPrice: cart.totalPrice,
+      totalPrice: totalPrice,
     });
   });
-
 };
 
 const postCart = (req, res, next) => {
   const prodId = req.body.productId;
+  const quantity = req.body.quantity ? req.body.quantity : 1;
 
   Product.findById(prodId)
     .then((product) => {
-      return req.user.addToCart(product);
+      return req.user.addToCart(product, quantity);
     })
     .then((result) => {
-      console.log("Product Added to cart", result);
       res.redirect("/cart");
     });
 };
 
 const postCartIncrease = (req, res, next) => {
   const prodId = req.body.productId;
-    req.user.adjustCart(prodId, 'increase');
-  res.redirect("/cart");
+  req.user.adjustCart(prodId, "increase").then(() => {
+    res.redirect("/cart");
+  });
 };
 
 const postCartDecrease = (req, res, next) => {
   const prodId = req.body.productId;
-  console.log(prodId)
-  req.user.adjustCart(prodId, 'decrease');
-  res.redirect("/cart");
+  req.user.adjustCart(prodId, "decrease").then(() => {
+    res.redirect("/cart");
+  });
 };
 
 const postDelete = (req, res, next) => {
   const prodId = req.body.productId;
-  req.user.removeFromCart(prodId)
-  res.redirect("/cart");
+  req.user.removeFromCart(prodId).then(() => {
+    res.redirect("/cart");
+  });
 };
 
 module.exports = {
