@@ -57,114 +57,41 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1042</strong></td>
-                  <td>Mar 10, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">Emily Carter</div>
-                    <small class="text-muted">emily@example.com</small>
-                  </td>
-                  <td>1 Item</td>
-                  <td><strong>$849.00</strong></td>
-                  <td><span class="stock-badge in-stock">Delivered</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1041</strong></td>
-                  <td>Mar 09, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">James Wilson</div>
-                    <small class="text-muted">j.wilson@example.com</small>
-                  </td>
-                  <td>2 Items</td>
-                  <td><strong>$1,299.00</strong></td>
-                  <td><span class="stock-badge low-stock">Shipped</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1040</strong></td>
-                  <td>Mar 09, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">Sarah Kim</div>
-                    <small class="text-muted">skim@example.com</small>
-                  </td>
-                  <td>1 Item</td>
-                  <td><strong>$679.00</strong></td>
-                  <td><span class="stock-badge low-stock">Processing</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1039</strong></td>
-                  <td>Mar 08, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">Michael Chen</div>
-                    <small class="text-muted">mchen@example.com</small>
-                  </td>
-                  <td>3 Items</td>
-                  <td><strong>$1,149.00</strong></td>
-                  <td><span class="stock-badge in-stock">Delivered</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1038</strong></td>
-                  <td>Mar 07, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">Lisa Park</div>
-                    <small class="text-muted">lisa.park@example.com</small>
-                  </td>
-                  <td>2 Items</td>
-                  <td><strong>$2,199.00</strong></td>
-                  <td><span class="stock-badge out-of-stock">Cancelled</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" /></td>
-                  <td><strong>#ORD-1037</strong></td>
-                  <td>Mar 06, 2026</td>
-                  <td>
-                    <div style="font-weight: 500;">Robert Taylor</div>
-                    <small class="text-muted">rtaylor@example.com</small>
-                  </td>
-                  <td>1 Item</td>
-                  <td><strong>$429.00</strong></td>
-                  <td><span class="stock-badge in-stock">Delivered</span></td>
-                  <td>
-                    <div class="flex gap-1">
-                      <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
-                      <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
-                    </div>
-                  </td>
-                </tr>
+                <% if (orders && orders.length > 0) { %>
+                  <% for (let order of orders) { %>
+                    <% 
+                      let totalItems = order.products.reduce((acc, p) => acc + p.quantity, 0);
+                      let orderTotal = order.products.reduce((acc, p) => acc + (p.quantity * (p.product.price || 0)), 0);
+                      let orderDate = order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) : 'Recent';
+                    %>
+                    <tr>
+                      <td><input type="checkbox" /></td>
+                      <td><strong>#ORD-<%= order._id.toString().slice(-4).toUpperCase() %></strong></td>
+                      <td><%= orderDate %></td>
+                      <td>
+                        <div style="font-weight: 500;"><%= order.user.name %></div>
+                        <small class="text-muted"><%= (order.user.userId && order.user.userId.email) ? order.user.userId.email : '' %></small>
+                      </td>
+                      <td><%= totalItems %> <%= totalItems === 1 ? 'Item' : 'Items' %></td>
+                      <td><strong>$<%= orderTotal.toFixed(2) %></strong></td>
+                      <td><span class="stock-badge in-stock">Completed</span></td>
+                      <td>
+                        <div class="flex gap-1">
+                          <button class="btn btn-outline btn-sm" title="View Details"><i class="fa-solid fa-eye"></i></button>
+                          <button class="btn btn-outline btn-sm" title="Edit Order"><i class="fa-solid fa-pen"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  <% } %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="8" style="text-align: center; padding: 3rem 1rem;">
+                      <i class="fa-solid fa-box-open" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 0.75rem; display: block;"></i>
+                      <h3 style="color: var(--text-main); margin-bottom: 0.25rem;">No Orders Found</h3>
+                      <p class="text-muted" style="margin: 0;">When customers place orders from their cart, they will show up here.</p>
+                    </td>
+                  </tr>
+                <% } %>
               </tbody>
             </table>
           </div>

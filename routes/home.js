@@ -23,5 +23,6 @@ router.post("/cart", cartController.postCart);
 router.post('/cart/increase', cartController.postCartIncrease)
 router.post('/cart/decrease', cartController.postCartDecrease)
 router.post('/cart/delete', cartController.postDelete)
+router.post('/create-order', cartController.postOrder)
 
 module.exports = router;

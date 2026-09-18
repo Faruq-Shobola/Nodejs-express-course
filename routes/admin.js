@@ -9,7 +9,7 @@ router.get('/dashboard', productController.getDashbord)
 
 router.get('/products', productController.getProducts)
 
-// router.get('/orders', productController.getOrders)
+router.get('/orders', productController.getOrders)
 
 router.post("/add-product", productController.saveProduct)
 

@@ -1,4 +1,5 @@
 const Product = require("./../models/product");
+const Order = require("./../models/order");
 
 const getProduct = (req, res, next) => {
   const productId = req.params.productId;
@@ -85,10 +86,16 @@ const addProduct = (req, res, next) => {
 };
 
 const getOrders = (req, res, next) => {
-  res.render("admin/orders", {
-    docTitle: "Orders Page",
-    path: "/orders",
-  });
+  Order.find()
+    .populate("user.userId")
+    .then((orders) => {
+      res.render("admin/orders", {
+        docTitle: "Orders Page",
+        path: "/orders",
+        orders: orders,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 /******  ADMIN FUNCTIONALITY ********* */
