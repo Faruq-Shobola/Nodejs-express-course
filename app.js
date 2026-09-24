@@ -5,6 +5,7 @@ const express = require("express");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
+const authRoutes = require("./routes/auth")
 const Cart = require("./models/cart");
 // const { mongoConnect } = require("./utils/database");
 
@@ -34,8 +35,8 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use("/admin", adminRoutes);
+app.use(authRoutes)
 app.use(shopRoutes);
 
 app.use(express.static(path.join(__dirname, "public")));
