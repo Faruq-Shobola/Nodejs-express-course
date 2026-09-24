@@ -44,8 +44,28 @@ const postSignup = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
+const postLogin = (req, res, next) => {
+  const { email, password } = req.body;
+
+  User.findOne({ email: email })
+    .then((user) => {
+      if (!user) {
+        return res.redirect("/login");
+      }
+
+      return bcrypt.compare(password, user.password).then((doMatch) => {
+        if (doMatch) {
+          return res.redirect("/admin/dashboard");
+        }
+        return res.redirect("/login");
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   getLogin,
   getSignup,
   postSignup,
+  postLogin,
 };
