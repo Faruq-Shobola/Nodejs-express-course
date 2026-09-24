@@ -55,7 +55,12 @@ const postLogin = (req, res, next) => {
 
       return bcrypt.compare(password, user.password).then((doMatch) => {
         if (doMatch) {
-          return res.redirect("/admin/dashboard");
+          req.session.isLoggedin = true;
+          req.session.userId = user._id.toString();
+          return req.session.save((err) => {
+            if (err) console.log(err);
+            return res.redirect("/admin/dashboard");
+          });
         }
         return res.redirect("/login");
       });
