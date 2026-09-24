@@ -79,6 +79,7 @@
                       </button>
                     </a>
                     <form method="POST" action="/cart">
+                      <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
                       <input type="hidden" name="productId" value="<%= product._id %>" />
                       <button type="submit" class="btn btn-primary btn-block">
                           Add to Cart

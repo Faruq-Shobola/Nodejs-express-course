@@ -1,5 +1,5 @@
-<%- include('../includes/head.ejs') %>
-<%- include('../includes/navigation.ejs') %>
+<%- include('../includes/head.ejs') %> <%- include('../includes/navigation.ejs')
+%>
 
 <main class="container">
   <div class="auth-card">
@@ -8,6 +8,7 @@
       <p>Join Artisan to start shopping and managing orders</p>
     </div>
     <form action="/signup" method="POST" class="auth-form">
+      <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
       <div class="form-group">
         <label for="name">Full Name</label>
         <input

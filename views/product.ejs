@@ -45,7 +45,7 @@
       <!-- Add to Cart Form -->
       <form method="POST" action="/cart">
         <input type="hidden" name="productId" value="<%= product.id %>" />
-
+        <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
         <div class="quantity-selector">
           <label for="quantity">Quantity</label>
           <input

@@ -19,6 +19,7 @@
         method="POST"
         action="/admin/products/<%= product._id %>/edit"
       >
+        <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
         <div class="form-grid">
           <!-- Product Name -->
           <div class="form-group">

@@ -4,9 +4,15 @@
     <nav class="main-nav">
       <a href="/" class="<%= path == '/' ? 'active' : '' %>">Home</a>
       <a href="/shop" class="<%= path == '/shop' ? 'active' : '' %>">Shop</a>
-      <a href="/login" class="<%= path == '/auth' ? 'active' : '' %>">Login</a>
+
+      <% if(isAuthenticated) { %>
+        <a href="/admin/dashboard">Admin</a>
+      <% } else {%>
+        <a href="/login" class="<%= path == '/auth' ? 'active' : '' %>">Login</a>
+      <% } %>
+
     </nav>
-    <div class="nav-icons">
+    <div class="nav-icons"> 
       <a href="#" title="Search"
         ><i class="fa-solid fa-magnifying-glass"></i
       ></a>

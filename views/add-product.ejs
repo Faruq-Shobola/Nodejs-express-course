@@ -3,6 +3,7 @@
 <%- include('includes/navigation.ejs') %>
 
     <form action="/admin/add-product" method="POST">
+      <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
       <input type="text" name="title" /><br /><button type="submit">
         Submit
       </button>

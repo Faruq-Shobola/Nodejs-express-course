@@ -1,15 +1,22 @@
 <!-- ========== ADMIN SIDEBAR ========== -->
 <aside class="admin-sidebar">
   <div class="logo">
-    <a href="/">Artisan<span>.</span></a></div>
+    <a href="/">Artisan<span>.</span></a>
+  </div>
 
   <div class="admin-nav-section">
     <p class="admin-nav-label">Main</p>
     <nav class="admin-nav">
-      <a href="/admin/dashboard" class="<%= path == '/dashboard' ? 'active' : '' %>">
+      <a
+        href="/admin/dashboard"
+        class="<%= path == '/dashboard' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-gauge-high nav-icon"></i> Dashboard
       </a>
-      <a href="/admin/products" class="<%= path == '/products' ? 'active' : '' %>">
+      <a
+        href="/admin/products"
+        class="<%= path == '/products' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-couch nav-icon"></i> Products
       </a>
       <a href="/admin/orders" class="<%= path == '/orders' ? 'active' : '' %>">
@@ -21,15 +28,21 @@
   <div class="admin-nav-section">
     <p class="admin-nav-label">Management</p>
     <nav class="admin-nav">
-      <a href="/admin/add-product" class="<%= path == '/add-product' ? 'active' : '' %>">
+      <a
+        href="/admin/add-product"
+        class="<%= path == '/add-product' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-circle-plus nav-icon"></i> Add Product
       </a>
     </nav>
   </div>
 
   <div class="admin-sidebar-footer">
-    <a href="/login"
-      ><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a
-    >
+    <form action="/logout" method="POST">
+      <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit">
+        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+      </button>
+    </form>
   </div>
 </aside>

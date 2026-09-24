@@ -2,8 +2,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const csrf = require("@dr.pogodin/csurf").default;
 
 const express = require("express");
+const csrfProtection = csrf();
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
@@ -44,6 +46,8 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use(csrfProtection);
+
 app.use((req, res, next) => {
   if (!req.session.userId) {
     return next();
@@ -61,6 +65,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedin || false;
+  res.locals.csrfToken = req.csrfToken();
   const cart = req.user ? req.user.cart : { items: [] };
   const cartCount = cart.items
     ? cart.items.reduce((count, p) => count + p.quantity, 0)

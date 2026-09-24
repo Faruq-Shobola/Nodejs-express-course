@@ -30,6 +30,7 @@
           <!-- Quantity Controls -->
           <div class="cart-item-qty">
             <form action="/cart/decrease" method="POST">
+            <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
               <input type="hidden" name="productId" value="<%= p.productId._id %>" />
               <button type="submit" class="qty-change-btn" aria-label="Decrease quantity">
                 <i class="fa-solid fa-minus"></i>
@@ -39,6 +40,7 @@
             <span class="qty-number"><%= p.quantity %></span>
             
             <form action="/cart/increase" method="POST">
+            <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
               <input type="hidden" name="productId" value='<%= p.productId._id %>'/>
               <button type="submit" class="qty-change-btn" aria-label="Increase quantity">
                 <i class="fa-solid fa-plus"></i>
@@ -55,6 +57,7 @@
           <!-- Delete Action -->
           <div class="cart-item-actions">
             <form action="/cart/delete" method="POST">
+            <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
               <input type="hidden" name="productId" value="<%= p.productId._id %>" />
               <button type="submit" class="cart-delete-btn" title="Remove Item">
                 <i class="fa-solid fa-trash-can"></i>
@@ -99,6 +102,7 @@
         
         <% if (products.length > 0) { %>
           <form action="/create-order" method="POST">
+            <input type="hidden" , name="_csrf" value="<%= csrfToken %>" />
             <button type="submit" class="btn btn-primary btn-block checkout-btn mt-4">
               Proceed to Checkout
             </button>
