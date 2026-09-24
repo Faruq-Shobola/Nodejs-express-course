@@ -31,6 +31,11 @@
           required
         />
       </div>
+      <% if (errorMessage) { %>
+      <div style="color: red">
+        <%= errorMessage%>
+      </div>
+      <%}%>
       <button type="submit" class="btn btn-dark btn-block">Log In</button>
     </form>
     <div class="auth-footer">

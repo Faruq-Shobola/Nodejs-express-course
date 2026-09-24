@@ -3,6 +3,7 @@
 
 <main class="container">
   <div class="auth-card">
+    
     <div class="auth-header">
       <h2>Create an Account</h2>
       <p>Join Artisan to start shopping and managing orders</p>
@@ -53,6 +54,11 @@
           required
         />
       </div>
+      <% if (errorMessage) { %>
+      <div style="color: red">
+        <%= errorMessage%>
+      </div>
+      <%}%>
       <button type="submit" class="btn btn-dark btn-block">Register</button>
     </form>
     <div class="auth-footer">

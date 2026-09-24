@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("@dr.pogodin/csurf").default;
+const flash = require("connect-flash");
 
 const express = require("express");
 const csrfProtection = csrf();
@@ -10,10 +11,7 @@ const csrfProtection = csrf();
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/home");
 const authRoutes = require("./routes/auth");
-const Cart = require("./models/cart");
-// const { mongoConnect } = require("./utils/database");
 
-// const Product = require("./models/product");
 const User = require("./models/user");
 
 const MONGODB_URI = "mongodb://localhost:27017/artisan";
@@ -31,6 +29,7 @@ store.on("error", function (error) {
 
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.use(flash());
 
 app.use(
   session({
